@@ -5,33 +5,41 @@ var game = {
     wins: 0,
     remainingGuesses: 15,
     lettersAlreadyGuessed: [],
+    currentWord: "",
+    displayWord: [],
 
     //return number of "-" as a string corresponding with number of letters of current guessing word
-    initialWord: function(word){
-        var iniWord = [];
-        for(var i=0; i<word.length; i++){
-            iniWord.push("-");
+    initialDisplayWord: function(){
+        for(var i=0; i<this.currentWord.length; i++){
+            this.displayWord.push("-");
         }
-        return iniWord;
     },
 
     //if the pressed letter is part of the current guessing word, update the display string and return true
     //else return false
-    updateDisplayWord: function(letter, curWord, disWord){
+    updateDisplayWord: function(letter){
         var i, updated;
         updated = false;
-        for (i=0; i<curWord.length; i++){
-            if (curWord[i] === letter){
-                disWord[i] = letter;
+        for (i=0; i<this.currentWord.length; i++){
+            if (this.currentWord[i] === letter){
+                this.displayWord[i] = letter;
                 updated = true;
             }
         }
+        if(updated) document.getElementById("displayWord").innerHTML = this.displayWord.join(" ");
+
         return updated;
     },
 
+    //keep track of number of remaining guesses
     decreaseRemainingGuesses: function(){
-        // if(this.remainingGuesses == 0)
-        // this.remainingGuesses--;
+        if(this.remainingGuesses > 0)  {
+            this.remainingGuesses--;
+            document.getElementById("remainingGuesses").innerHTML = this.remainingGuesses;
+        }
+        else{
+            this.resetGame();
+        }
     },
 
     //push guessed letter into lettersAreadyGuessed array
@@ -44,23 +52,29 @@ var game = {
                 if (this.lettersAlreadyGuessed[i] === letter) same=true;  
             }
             if(!same) this.lettersAlreadyGuessed.push(letter);
-            console.log(this.lettersAlreadyGuessed.length);
         }
+
+        document.getElementById("lettersAlreadyGuessed").innerHTML = this.lettersAlreadyGuessed.join("  ");
     },
 
+    //start another round of word guessing, without refreshing number of wins
     resetGame: function(){
         this.remainingGuesses = 15;
         this.lettersAlreadyGuessed=[];
-        return this.words[Math.floor(Math.random()*this.words.length)];
+        this.currentWord = this.words[Math.floor(Math.random()*this.words.length)];
+        this.displayWord = [];
+        this.initialDisplayWord();
+        document.getElementById("displayWord").innerHTML = this.displayWord.join(" ");
+        document.getElementById("remainingGuesses").innerHTML = game.remainingGuesses;
+        document.getElementById("wins").innerHTML = game.wins;
+        document.getElementById("lettersAlreadyGuessed").innerHTML = ""; 
     }
 };
 
-var currentWord = game.resetGame();
-var displayWord = game.initialWord(currentWord);
-console.log(currentWord);
-console.log(displayWord);
-document.getElementById("displayWord").innerHTML = displayWord.join(" ");
-document.getElementById("remainingGuesses").innerHTML = game.remainingGuesses;
+
+game.resetGame();
+
+console.log(game.currentWord);
 
 document.onkeyup = function(event){
 
@@ -72,22 +86,19 @@ document.onkeyup = function(event){
         console.log(key);
 
         // if key maches a letter in the current word, update the display word
-        if(game.updateDisplayWord(key, currentWord, displayWord)){
-            document.getElementById("displayWord").innerHTML = displayWord.join(" ");
+        if(game.updateDisplayWord(key)){
+            game.decreaseRemainingGuesses();
+            document.getElementById("displayWord").innerHTML = game.displayWord.join(" ");
 
-            if(currentWord === displayWord.join("")){
-                currentWord = game.resetGame();
-                displayWord = game.initialWord(currentWord);
-                document.getElementById("displayWord").innerHTML = displayWord.join(" "); 
-                document.getElementById("lettersAlreadyGuessed").innerHTML = ""; 
+            if(game.currentWord === game.displayWord.join("")){
+                game.wins++;
+                game.resetGame();
             }
         }
         //else update guessed letters and decrease number of guesses remaining
         else {
+            game.decreaseRemainingGuesses();
             game.updateLettersAlreadyGuessed(key);
-            document.getElementById("lettersAlreadyGuessed").innerHTML = game.lettersAlreadyGuessed.join("  ");
-            game.remainingGuesses--;
-            document.getElementById("remainingGuesses").innerHTML = game.remainingGuesses;
         }
     }
 };
