@@ -3,12 +3,38 @@ body{
     margin: 0px;
 }
 
-header{
-    margin: 50px auto 30px auto;
+h1{
+    margin: 40px auto 20px auto;
     text-align: center;
     font-family: 'Indie Flower', cursive;
+    text-shadow: 2px 2px 4px grey;
     font-size: 60px;
     font-weight: bold;
+}
+
+h2{
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+    font-size: 40px;
+    font-weight: bold;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+@keyframes headerAnimation {        
+from {
+    opacity : 0;
+    left : -500px;
+}
+to {
+    opacity : 1;
+    left : 0;
+}      
+}
+
+.run-animation {
+position: relative;
+animation: headerAnimation 2s ease;
 }
 
 .main {
@@ -68,7 +94,7 @@ header{
 }
 
 /* Safari 4.0 - 8.0 */
-@-webkit-keyframes word {
+/* @-webkit-keyframes word {
     0%   {color:red; left:0px; top:0px;}
     16.67%  {color: yellow; left:-150px; top: -150px;}
     33.33%  {color:blue; left:150px; top:-150px;}
@@ -76,7 +102,7 @@ header{
     66.64%  {color:blue; left:-150px; top:150px;}
     83.35%  {color:yellow; left:150px; top:0px;}
     100%    {color:red; left:0px; top:0px;}
-}
+} */
 
 /* Standard syntax */
 @keyframes word {
