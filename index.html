@@ -2,27 +2,31 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Page Title</title>
+    <title>Word Guess Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 </head>
 <body>
-    <section class="main">
-        <div>
-            <h1>Word Guess Game</h1>
-        </div>
+    <header>
+        <h1>Word Guess Game</h1>
+    </header>
 
-        <div>
-            <p>Press any key to get started</p><br>
-            <p>Wins:&nbsp;<span id="wins"></span></p><br>
-            <p>Current Word: &nbsp;<span id="displayWord"></span></p> <br>
-            <p>Number of Guesses Remaining: &nbsp;<span id="remainingGuesses"></span></p><br>
-            <p>Letters Already Guessed:&nbsp;<span id="lettersAlreadyGuessed"></span></p>
-        </div>
+    <section class="main container">
+        <div class="row">
+            <div class="col-6" id="game">
+                <p id="start">Press any key to get started</p><br>
+                <p class="wins">Wins:&nbsp;<span id="wins"></span></p><br>
+                <p class="displayWord">Current Word: &nbsp;<span id="displayWord"></span></p> <br>
+                <p class="remainingGuesses">Number of Guesses Remaining: &nbsp;<span id="remainingGuesses"></span></p><br>
+                <p class="lettersAlreadyGuessed">Letters Already Guessed:<br><br><span id="lettersAlreadyGuessed"></span></p>
+            </div>
 
-        <div>
-            <span id="answer"></span>
+            <div class="col-6 answerSection">
+                <div id="answer"></div>
+            </div>
         </div>
     </section>
 

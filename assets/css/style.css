@@ -2,3 +2,89 @@ body{
     background-image: url("../images/bg.png");
     margin: 0px;
 }
+
+header{
+    margin: 50px auto 30px auto;
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.main {
+    background-color: #ffffff;
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    font-weight: bold;
+}
+
+#game, .answerSection{
+    border: dashed;
+    border-width: 5px;
+    border-color: lightgrey;
+    height:450px;
+}
+
+#game{
+    padding: 20px;
+    font-size: 25px;
+}
+
+#start{
+    padding-bottom: 50px;
+}
+
+.wins{
+    color: rgb(243, 115, 134);
+}
+
+.displayWord{
+    color:rgb(3, 128, 3); 
+}
+
+.remainingGuesses{
+    color:rgb(204, 87, 204);
+}
+
+.lettersAlreadyGuessed{
+    color:orange;
+}
+
+.answerSection{
+    font-size: 80px;
+    text-align: center;
+    padding: 200px 0;
+}
+
+.animation {
+    color: red;
+    position: relative;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-iteration-count: 3; /* Safari 4.0 - 8.0 */
+    animation-name: word;
+    animation-duration: 4s;
+    animation-iteration-count: 3;
+}
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes word {
+    0%   {color:red; left:0px; top:0px;}
+    16.67%  {color: yellow; left:-150px; top: -150px;}
+    33.33%  {color:blue; left:150px; top:-150px;}
+    50.01%  {color:green; left:150px; top:150px;}
+    66.64%  {color:blue; left:-150px; top:150px;}
+    83.35%  {color:yellow; left:150px; top:0px;}
+    100%    {color:red; left:0px; top:0px;}
+}
+
+/* Standard syntax */
+@keyframes word {
+    0%   {color:red; left:0px; top:0px;}
+    16.67%  {color: yellow; left:-150px; top: -150px;}
+    33.33%  {color:blue; left:150px; top:-150px;}
+    50.01%  {color:green; left:150px; top:150px;}
+    66.64%  {color:blue; left:-150px; top:150px;}
+    83.35%  {color:yellow; left:150px; top:0px;}
+    100%    {color:red; left:0px; top:0px;}
+}

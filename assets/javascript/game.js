@@ -1,3 +1,6 @@
+var animation;
+animation = document.getElementById("answer");
+
 var game = {
     words: ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
             "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty",
@@ -80,12 +83,15 @@ var game = {
 
     //start another round of word guessing, without refreshing number of wins
     resetGame: function(){
-        document.getElementById("answer").innerHTML = this.currentWord;
-        
+        animation.classList.remove("animation");
+        animation.innerHTML = this.currentWord;
+        void animation.offsetWidth;
+        animation.classList.add("animation");
+
         this.remainingGuesses = 15;
         this.lettersAlreadyGuessed=[];
         this.currentWord = this.words[Math.floor(Math.random()*this.words.length)];
-        console.log(this.currentWord);
+        //console.log(this.currentWord);
         this.displayWord = [];
         this.initialDisplayWord();
         document.getElementById("displayWord").innerHTML = this.displayWord.join(" ");
